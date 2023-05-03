@@ -4,9 +4,6 @@ set (CMAKE_CXX_STANDARD 17)
 set(CMAKE_CXX_FLAGS "-std=c++17 -m64 -O3")
 set(CXX_STANDARD_REQUIRED ON)
 
-set (glm_DIR Z:/GLM/lib/cmake/glm)
-set (glfw3_DIR Z:/GLFW/lib/cmake/glfw3)
-
 project (shadows)
 
 if(MSVC)
