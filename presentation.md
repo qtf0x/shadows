@@ -4,14 +4,14 @@ date: MMMM dd, YYYY
 paging: "%d / %d"
 ---
 
-# A Brief History of Real-Time Hard Shadowing Algorithms
+# A Brief History of Rasterized Hard Shadowing Algorithms
 
 <br/><br/>
 <br/><br/>
 
 ##### Planar Projections
 ##### Shadow Textures
-##### Depth Mapping
+##### Shadow (Depth) Mapping
 ##### Percentage-Closer Filtering
 ##### Shadow Volumes (not today lol)
 ##### ~~Stencil Volumes~~
@@ -41,43 +41,82 @@ Scene points can be:
 
 ---
 
-### Everything happens in your terminal
-Create slides and present them without ever leaving your terminal.
+## Planar Projections
+
+- Create special projection matrix (similar to perspective transform)
+- Squishes occluder geometry onto a specific plane
+- Re-render squished geometry all black
+
+#### The Good
+
+- Relatively cheap for simple geometry
+- Sharp shadows w/out aliasing or sampling issues
+
+#### The Bad
+
+- Can only shadow planes
+- Must separate occluders and receivers
+- Need to draw all occluder geometry twice
 
 ---
 
-#### Code execution
-```bash
-chafa ~Pictures/guy.png
-```
+## Shadow Textures
 
-You can execute code inside your slides by pressing `<C-e>`,
-the output of your command will be displayed at the end of the current slide.
+- Place camera at the light source
+- Render occluders into binary framebuffer texture
+- Render receivers normally, sampling from texture to determine shadow
+
+#### The Good
+
+- Shadows on curved surfaces!
+
+#### The Bad
+
+- Still need to separate occluders and receivers
+- Textures need high resolution to avoid aliasing
 
 ---
 
-##### Pre-process slides
-###### H6
+## Shadow (Depth) Mapping
 
-You can add a code block with three tildes (`~`) and write a command to run *before* displaying
-the slides, the text inside the code block will be passed as `stdin` to the command
-and the code block will be replaced with the `stdout` of the command.
+- Similar to shadow textures, but render out fragment depths to framebuffer
+- Compare depth of view samples in light space to recorded depth
 
-```
-~~~graph-easy --as=boxart
-[ A ] - to -> [ B ]
-~~~
-```
+#### The Good
 
-The above will be pre-processed to look like:
+- Per-fragment -> Occluders can be receivers (self-shadowing!)
+- Basically the same performance as shadow textures
 
-┌───┐  to   ┌───┐
-│ A │ ────> │ B │
-└───┘       └───┘
+#### The Bad
 
-For security reasons, you must pass a file that has execution permissions
-for the slides to be pre-processed. You can use `chmod` to add these permissions.
+- Performing signal reconstruction -> LOTS of artifacts
+- Fixing one artifact usually means creating another
 
-```bash
-chmod +x file.md
-```
+---
+
+## Percentage-Closer Filtering
+
+Can we reduce aliasing + shadow acne without increasing texture resolution? What about approximating soft shadows?
+
+- Basically need to sample multiple texels from shadow map and combine them
+- Use as much surrounding information as possible w/out creating more artifacts
+- How do we combine the texels?
+	- Many statistical methods
+	- Simple average is often good enough
+
+### There are still problems (because of course there are)
+
+- No one sampling distribution ideal for every scene
+- Sampling bias can lead to inconsistent results
+- Edges of the shadow are fuzzier ...  this is NOT soft shadowing, not remotely physically accurate
+
+---
+
+## References
+
+Real-Time Rendering, 4th Edition (Tomas Akenine-Mo¨ller, Eric Haines, Naty Hoffman)
+
+OpenGL Programming Guide, 9th Edition (John Kessenich et al.)
+
+Real-Time Shadows (Elmar Eisemann et al.)
+

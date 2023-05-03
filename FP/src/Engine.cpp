@@ -248,6 +248,9 @@ void Engine::handleKeyEvent(GLint key, GLint action) {
             break;
 
         // shadow options
+        case GLFW_KEY_0:
+            _which_shadows = NONE;
+            break;
         case GLFW_KEY_1:
             _which_shadows = PLANAR;
             if (_options(PLANAR_DEPTH_TEST))
@@ -1458,7 +1461,7 @@ void Engine::_renderShadowMaps() {
 
 void Engine::_updateScene() {
     // set the window title with current rendering info
-    _windowTitle = "A2 - Noisy Teapotahedron [ ";
+    _windowTitle = "FP - Shadows [ ";
 
     // show tessellation level
     _windowTitle += "Tessellation Level ";

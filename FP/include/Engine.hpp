@@ -38,8 +38,7 @@ class Engine {
     // *************************************************************************
     // Engine Interface
 
-    Engine(const std::string& windowTitle =
-               "A1 - Blinn-Phong Shaders [ 0.000 FPS ]",
+    Engine(const std::string& windowTitle = "FP - Shadows [ 0.000 FPS ]",
            const GLuint& windowWidth = 1920, const GLuint& windowHeight = 1080)
         : _isInitialized{GL_FALSE}, _isShutDown{GL_FALSE},
           _windowTitle{windowTitle}, _windowWidth{windowWidth},
@@ -101,7 +100,7 @@ class Engine {
     // *************************************************************************
     // Shadow Properties
 
-    enum SHADOW_TYPE { PLANAR, TEXTURES, MAPS, VOLUMES, PCSS };
+    enum SHADOW_TYPE { NONE, PLANAR, TEXTURES, MAPS, VOLUMES, PCSS };
     enum SHADOW_OPTIONS {
         PLANAR_DEPTH_TEST = 2,
         PLANAR_BLEND = 4,
@@ -110,8 +109,8 @@ class Engine {
         MAPS_CULL_FRONT_FACE = 32
     };
 
-    int _shadow_options = 0;
-    SHADOW_TYPE _which_shadows = PLANAR;
+    int _shadow_options = PLANAR_DEPTH_TEST;
+    SHADOW_TYPE _which_shadows = NONE;
 
     GLuint SHADOW_TEXTURE_RESOLUTION{512};
     GLfloat _shadowBias{0.f}, _shadowMapSamples{2.f};
