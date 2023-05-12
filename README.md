@@ -56,5 +56,6 @@ At any time, you may use these keys:
 - [`L`] to stop the light from automatically moving up and down. While in this mode, press [`B`] to manually move the light down, [`N`] to move it up, or [`L`] to start it moving automatically again from it's current position.
 - [`S`] to stop the objects in the scene from automatically spinning in a circle. While in this mode, press [`LEFT`] to manually spin the objects clockwise, [`RIGHT`] to spin them anti-clockwise, or [`S`] to start them moving automatically again from their current position.
 - [`UP`] or [`DOWN`] to adjust the tessellation level of the teapots up or down, respectively. They default to the maximum (that my graphics driver supports, anyway) of 64. The current level is always displayed in the window title, along with the FPS (though this might be hard to see since the program attempts to launch in fullscreen).
+- [`0`] to turn off all shadows.
 
 Happy coding! <3 <3
