@@ -38,7 +38,7 @@ I use like every single key on the entire keyboard, so get ready. To follow the 
 3. Press [`1`] again to fix the Z-fighting and see perfectly black, perfectly hard shadows.
 4. Press [`2`] to blend the shadows with the color of the receiver surfaces. Now you'll see the overlapping blending artifact.
 5. Press [`3`] to fix this by using a fancy stencil buffer trick. Now we have nice blended shadows.
-6. Press [`O`] (the letter O) to reveal a bunch more objects in the scene, which are also shadow casters. As such, with the current algorithm, they cannot also by shadow receivers.
+6. Press [`O`] (the letter O) to reveal a bunch more objects in the scene, which are also shadow casters. As such, with the current algorithm, they cannot also be shadow receivers.
 7. Press [`4`] to switch to the next algorithm, **shadow textures**. Now objects with curved surfaces, like the outer ring of spheres, can be receivers. But they still can't be both receivers and blockers.
 8. Repeatedly press [`Z`] to lower the texture resolution and improve performance, or [`X`] to increase the texture resolution and improve image quality.
 9. Press [`5`] to toggle linear filtering on the shadow textures. This makes them look slightly better when they're really low-resolution, but is not a great solution and doesn't look good in motion. Maybe turn this off.
