@@ -31,20 +31,20 @@ Though these libraries are cross-platform, I develop on Linux, and don't know en
 
 ## Controls
 
-I use like every single key on the entire keyboard, so get ready. To follow the order that different effects are meant to demonstrated:
+I use like every single key on the entire keyboard, so get ready. To follow the order that different effects are meant to be demonstrated:
 
 1. First, move the camera around by left-clicking and dragging the mouse and using the scroll wheel to zoom, until you have a good view of the scene.
-2. Press [`1`] to turn on the most primitive version of __planar projection shadows__. You should see a mess of Z-fighting.
+2. Press [`1`] to turn on the most primitive version of **planar projection shadows**. You should see a mess of Z-fighting.
 3. Press [`1`] again to fix the Z-fighting and see perfectly black, perfectly hard shadows.
 4. Press [`2`] to blend the shadows with the color of the receiver surfaces. Now you'll see the overlapping blending artifact.
 5. Press [`3`] to fix this by using a fancy stencil buffer trick. Now we have nice blended shadows.
 6. Press [`O`] to reveal a bunch more objects in the scene, which are also shadow casters. As such, with the current algorithm, they cannot also by shadow receivers.
-7. Press [`4`] to switch to the next algorithm, __shadow textures__. Now objects with curved surfaces, like the outer ring of spheres, can be receivers. But they still can't be both receivers and blockers.
+7. Press [`4`] to switch to the next algorithm, **shadow textures**. Now objects with curved surfaces, like the outer ring of spheres, can be receivers. But they still can't be both receivers and blockers.
 8. Repeatedly press [`Z`] to lower the texture resolution and improve performance, or [`X`] to increase the texture resolution and improve image quality.
 9. Press [`5`] to toggle linear filtering on the shadow textures. This makes them look slightly better when they're really low-resolution, but is not a great solution and doesn't look good in motion. Maybe turn this off.
-10. Press [`6`] to switch to the last algorithm, __shadow mapping__. You'll immediately see a lot of artifacts in the form of shadow acne.
+10. Press [`6`] to switch to the last algorithm, **shadow mapping**. You'll immediately see a lot of artifacts in the form of shadow acne.
 11. Repeatedly press [`C`] to lower the shadow bias and make contact shadows more accurate, or [`V`] to increase the shadow bias and make the shadow acne less noticeable. If you increase this, you should now be able to clearly see that all objects in the scene can be both shadow casters and receivers - this enables self-shadowing on the teapots!
-12. Press [`7`] to turn on __percentage-closer filtering (PCF)__. This will do a better job than linear filtering of softening the edges of low-resolution shadow maps and decreasing perceived aliasing. This is more visible if you lower the shadow map resolution with [`Z`].
+12. Press [`7`] to turn on **percentage-closer filtering (PCF)**. This will do a better job than linear filtering of softening the edges of low-resolution shadow maps and decreasing perceived aliasing. This is more visible if you lower the shadow map resolution with [`Z`].
 13. Repeatedly press [`G`] to decrease the number of PCF samples and improve performance, or [`H`] to increase the number of PCF samples and improve image quality.
 
 At this point you can adjust the settings and try different combinations of things to see what happens.
